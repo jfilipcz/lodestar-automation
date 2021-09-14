@@ -31,8 +31,6 @@ ansible_tower:
     - name: "{{ customer_engagement }}-terminate-environment"
       description: "Workflow template for customer environment termination"
       always:
-      -  project: "{{ customer_engagement }}-project"
-         always:
             - job_template: "{{ customer_engagement }}-termination-notification"
               inventory: "{{ customer_engagement }}-tower-mail-host"
               project: "infra-ansible"
