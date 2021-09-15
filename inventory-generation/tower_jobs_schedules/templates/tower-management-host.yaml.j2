@@ -68,7 +68,7 @@ ansible_tower:
           source_vars: |-
             ---
   workflow_templates:
-  - name: Termination Workflow Template
+  - name: "{{ customer_engagement }}-termination-workflow"
     nodes:
       - unified_job_template:
           name: "{{ customer_engagement }}-email-terminate-engagement"
@@ -169,6 +169,6 @@ ansible_tower:
       {% raw -%}
       rrule: "{{ archive_date | parse_datetime | replace_datetime(hour=5) | to_rrule(timezone=timezone) }}"
       {%- endraw %}
-      unified_job_template: "{{ customer_engagement }}-remove-resource-claim"
+      unified_job_template: "{{ customer_engagement }}-termination-workflow"
       enabled: {{ enable_notifications | default(false) }}
          
