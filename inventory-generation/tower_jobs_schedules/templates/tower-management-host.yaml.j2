@@ -69,6 +69,7 @@ ansible_tower:
             ---
   workflow_templates:
   - name: "{{ customer_engagement }}-termination-workflow"
+    ask_variables_on_launch: true
     nodes:
       - unified_job_template:
           name: "{{ customer_engagement }}-email-terminate-engagement"
