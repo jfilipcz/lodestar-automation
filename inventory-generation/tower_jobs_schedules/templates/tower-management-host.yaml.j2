@@ -75,7 +75,7 @@ ansible_tower:
         success_nodes:
           - unified_job_template:
               name: "{{ customer_engagement }}-remove-argocd-application"
-              success_nodes:
+            success_nodes:
                 - unified_job_template:
                     name: "{{ customer_engagement }}-remove-resource-claim"
 
@@ -171,4 +171,10 @@ ansible_tower:
       {%- endraw %}
       unified_job_template: "{{ customer_engagement }}-termination-workflow"
       enabled: {{ enable_notifications | default(false) }}
+      extra_data:
+        body: {% raw %}"{{ shutoff.body }}"{% endraw %}
+        title: {% raw %}"{{ shutoff.title }}"{% endraw %}
+        list_of_users: {% raw %}"{{ full.list_of_users | default([]) }}"{% endraw %}
+        list_of_mail_cc: {% raw %}"{{ list_of_mail_cc | default([]) }}"{% endraw %}
+
          
