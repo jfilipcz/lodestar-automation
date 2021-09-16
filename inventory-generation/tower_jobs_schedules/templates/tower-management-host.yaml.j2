@@ -33,17 +33,17 @@ ansible_tower:
       inventory: "{{ customer_engagement }}-tower-mail-host"
       project: "infra-ansible"
       playbook: "playbooks/notifications/email-notify-list-of-users.yml"
-      ask_variables_on_launch: true
+      ask_variables_on_launch: false
     - name: "{{ customer_engagement }}-remove-argocd-application"
       inventory: "{{ customer_engagement }}-tower-mail-host"
       project: "infra-ansible"
       playbook: "playbooks/notifications/email-notify-list-of-users.yml"
-      ask_variables_on_launch: true
+      ask_variables_on_launch: false
     - name: "{{ customer_engagement }}-remove-resource-claim"
       inventory: "{{ customer_engagement }}-tower-mail-host"
       project: "infra-ansible"
       playbook: "playbooks/notifications/email-notify-list-of-users.yml"
-      ask_variables_on_launch: true
+      ask_variables_on_launch: false
   inventories:
     - name: "{{ customer_engagement }}-tower-mail-host"
       variables: ""
