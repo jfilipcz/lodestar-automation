@@ -71,8 +71,8 @@ ansible_tower:
         - unified_job_template:
             name: "{{ customer_engagement }}-remove-openshift-objects"
           success_nodes:
-             - unified_job_template:
-               name: "{{ customer_engagement }}-email-terminate-engagement"
+            - unified_job_template:
+              name: "{{ customer_engagement }}-email-terminate-engagement"
   schedules:
     - name: "{{ customer_engagement }}-welcome-internal"
       description: "Welcome Internal for internal {{ company_name }} engagement members"
