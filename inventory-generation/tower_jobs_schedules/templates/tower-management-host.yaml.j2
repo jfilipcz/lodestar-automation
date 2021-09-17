@@ -64,20 +64,6 @@ ansible_tower:
           source_vars: |-
             ---
 
-
-  - name: "Workflow 1"
-    description: "My Workflow 1"
-    nodes:
-      - unified_job_template:
-          name: "Job1"
-        success_nodes:
-          - unified_job_template:
-              name: "Job2"
-          - unified_job_template:
-              name: "Job3"
-        failure_nodes:
-          - unified_job_template:
-
   workflow_templates:
     - name: "{{ customer_engagement }}-termination-workflow"
       description: "Workflow Template for removal of Engagement environment"
@@ -88,6 +74,7 @@ ansible_tower:
           success_nodes:
             - unified_job_template:
                 name: "{{ customer_engagement }}-email-terminate-engagement"
+
   schedules:
     - name: "{{ customer_engagement }}-welcome-internal"
       description: "Welcome Internal for internal {{ company_name }} engagement members"
