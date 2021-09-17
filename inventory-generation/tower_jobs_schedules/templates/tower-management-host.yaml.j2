@@ -69,7 +69,7 @@ ansible_tower:
       organization: "{{ organization }}"
       nodes:
         - unified_job_template:
-            name: "{{ customer_engagement }}-remove-openshift-objects""
+            name: "{{ customer_engagement }}-remove-openshift-objects"
           success_nodes:
              - unified_job_template:
                name: "{{ customer_engagement }}-email-terminate-engagement"
