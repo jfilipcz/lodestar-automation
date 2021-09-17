@@ -71,18 +71,18 @@ ansible_tower:
           source_vars: |-
             ---
   workflow_templates:
-  - name: "{{ customer_engagement }}-termination-workflow"
-    ask_variables_on_launch: true
-    ask_limit_on_launch: true
-    nodes:
-      - unified_job_template:
-          name: "{{ customer_engagement }}-email-terminate-engagement"
-        success_nodes:
-          - unified_job_template:
-              name: "{{ customer_engagement }}-remove-argocd-application"
-            success_nodes:
-                - unified_job_template:
-                    name: "{{ customer_engagement }}-remove-resource-claim"
+    - name: "{{ customer_engagement }}-termination-workflow"
+      ask_variables_on_launch: true
+      ask_limit_on_launch: true
+      nodes:
+        - unified_job_template:
+            name: "{{ customer_engagement }}-email-terminate-engagement"
+          success_nodes:
+            - unified_job_template:
+                name: "{{ customer_engagement }}-remove-argocd-application"
+              success_nodes:
+                  - unified_job_template:
+                      name: "{{ customer_engagement }}-remove-resource-claim"
 
   schedules:
     - name: "{{ customer_engagement }}-welcome-internal"
@@ -181,6 +181,6 @@ ansible_tower:
         title: {% raw %}"{{ shutoff.title }}"{% endraw %}
         list_of_users: {% raw %}"{{ full.list_of_users | default([]) }}"{% endraw %}
         list_of_mail_cc: {% raw %}"{{ list_of_mail_cc | default([]) }}"{% endraw %}
-
+        app_name: {% raw %}"gitlab-app-{{ project_id }}"{% endraw %}
 
          
