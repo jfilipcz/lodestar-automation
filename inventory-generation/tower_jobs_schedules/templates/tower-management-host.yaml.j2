@@ -34,12 +34,8 @@ ansible_tower:
       project: "infra-ansible"
       playbook: "playbooks/notifications/email-notify-list-of-users.yml"
       ask_variables_on_launch: true
-    - name: "{{ customer_engagement }}-remove-argocd-application"
-      inventory: "{{ customer_engagement }}-tower-mail-host"
-      project: "infra-ansible"
-      playbook: "playbooks/openshift-remove-object.yml"
-      ask_variables_on_launch: true
-    - name: "{{ customer_engagement }}-remove-resource-claim"
+    - name: "{{ customer_engagement }}-remove-openshift-objects"
+      description: "Job Template to remove OpenShift ArgoCD Application and ResourceClaim"
       inventory: "{{ customer_engagement }}-tower-mail-host"
       project: "infra-ansible"
       playbook: "playbooks/openshift-remove-object.yml"
@@ -73,13 +69,10 @@ ansible_tower:
       organization: "{{ organization }}"
       nodes:
         - unified_job_template:
-            name: "{{ customer_engagement }}-remove-argocd-application"
+            name: "{{ customer_engagement }}-remove-openshift-objects""
           success_nodes:
-            - unified_job_template:
-                name: "{{ customer_engagement }}-remove-resource-claim"
-              success_nodes:
-                  - unified_job_template:
-                      name: "{{ customer_engagement }}-email-terminate-engagement"
+             - unified_job_template:
+               name: "{{ customer_engagement }}-email-terminate-engagement"
   schedules:
     - name: "{{ customer_engagement }}-welcome-internal"
       description: "Welcome Internal for internal {{ company_name }} engagement members"
@@ -166,5 +159,13 @@ ansible_tower:
         list_of_users: {% raw %}"{{ full.list_of_users | default([]) }}"{% endraw %}
         list_of_mail_cc: {% raw %}"{{ list_of_mail_cc | default([]) }}"{% endraw %}
         app_name: "gitlab-app-{{ project_id }}"
-
+        openshift_remove_objects:
+          - name: "gitlab-app-{{ project_id }}"
+            kind: "Application"
+            namespace: "lodestar-argo-cd"
+            api_version: argoproj.io/v1alpha1
+          - name: "gitlab-app-{{ project_id }}"
+            kind: "ResourceClaim"
+            namespace: "lodestar-babylon-operators"
+            api_version: "poolboy.gpte.redhat.com/v1" 
          
