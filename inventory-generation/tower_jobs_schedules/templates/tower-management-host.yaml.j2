@@ -181,5 +181,7 @@ ansible_tower:
         title: {% raw %}"{{ shutoff.title }}"{% endraw %}
         list_of_users: {% raw %}"{{ full.list_of_users | default([]) }}"{% endraw %}
         list_of_mail_cc: {% raw %}"{{ list_of_mail_cc | default([]) }}"{% endraw %}
+        app_name: {% raw %}"gitlab-app-{{ project_id }}"{% endraw %}
+
 
          
