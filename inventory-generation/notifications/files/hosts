@@ -1,5 +1,11 @@
 [mail-host]
 localhost
 
+[openshift_api]
+localhost
+
 [mail-host:vars]
+ansible_connection=local
+
+[openshift_api:vars]
 ansible_connection=local
